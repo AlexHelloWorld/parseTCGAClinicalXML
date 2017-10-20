@@ -2,6 +2,7 @@
 
 import xml.etree.ElementTree as ET
 import csv
+import unicodedata
 
 #parse XML node tag to easily readable text
 def parseTag(tag):
@@ -17,7 +18,8 @@ def getClinicalInfo(xmlPath):
         if parseTag(child.tag) == 'patient':
             for grandchild in child:
                 if len(list(grandchild)) == 0:
-                    clinicalDictionary[parseTag(grandchild.tag)] = grandchild.text
+                    value = unicode(grandchild.text)
+                    clinicalDictionary[parseTag(grandchild.tag)] = value.encode('ascii', 'ignore')
     return clinicalDictionary
 
 #write clincal information from multiple TCGA clinical xml files to csv format
