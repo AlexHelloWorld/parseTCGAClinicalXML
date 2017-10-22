@@ -12,8 +12,11 @@ python parseTCGAClinicalXML.py 'output.csv' 'input_xml_file_list.txt' 'patient'o
 
 ```
 replace 'output.csv' with the name you want for your output csv file
+
 'input_xml_file_list.txt' is a text file containing paths to TCGA clinical xml files
+
 use either one of 'patient', 'followup' or 'survival' as the third input variable to output different clinical data of patients.
+
 sample/ directory contains some samples of input and output
 
 * import as a python module and use functions inside parseTCGAClinicalXML.py
