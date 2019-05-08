@@ -55,13 +55,19 @@ def constructSuvivalDictionary(clinicalList, followupList):
     survivalDictionary = dict()
     for clinical in clinicalList:
         survivalDictionary['bcr_patient_barcode'] = clinical['bcr_patient_barcode']
-        survivalDictionary['vital_status'] =  clinical['vital_status']
+        try:
+            survivalDictionary['vital_status'] =  clinical['vital_status']
+        except:
+            survivalDictionary['vital_status'] = 'Unknown'
         if survivalDictionary['vital_status'] == 'Alive':
             survivalDictionary['survival'] = clinical['days_to_last_followup']
         elif survivalDictionary['vital_status'] == 'Dead':
             survivalDictionary['survival'] = clinical['days_to_death']
         else:
-            survivalDictionary['survival'] = clinical['days_to_last_followup']
+            try:
+                survivalDictionary['survival'] = clinical['days_to_last_followup']
+            except:
+                survivalDictionary['survival'] = 'Unknown'
         survivalDictDictionary[survivalDictionary['bcr_patient_barcode']] = survivalDictionary
         survivalDictionary = dict()
     for followup in followupList:
